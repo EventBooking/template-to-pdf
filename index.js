@@ -26,7 +26,8 @@ exports.convert = function (event, context, callback) {
     var $ = cheerio.load(event.html);
 
     fs.readFile(froala_css, 'utf8', function (err, css) {
-        var $styles = $('<style type="text/css"></style>').text(css);
+        var additionalCss = "html{zoom:0.53;}"; 
+        var $styles = $('<style type="text/css"></style>').text(additionalCss + css);
 
         var options = {
             header: getHtml($, $styles, 'header'),
