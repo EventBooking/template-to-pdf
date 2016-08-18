@@ -1,5 +1,6 @@
 web:
-  image: template-to-pdf
+  build: .
   command: npm test
   volumes:
   - ./test:/home/test
+  - ./index.js:/home/index.js

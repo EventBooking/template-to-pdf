@@ -1,5 +1,4 @@
-var conversion = require("phantom-html-to-pdf")(),
-    phantomjs = require("phantomjs-prebuilt"),
+var wkhtmltopdf = require("wkhtmltopdf"),
     cheerio = require('cheerio'),
     fs = require("fs"),
     froala_css = './bower_components/froala-wysiwyg-editor/css/froala_style.css';
@@ -14,8 +13,8 @@ function getHtml($, $styles, section) {
 
     var $body = $('<body class="fr-view"></body>')
         .append($.html($section));
-    
-    return '<DOCTYPE html><html>' + $.html($head) + $.html($body) + '</html>';
+
+    return '<!DOCTYPE html><html>' + $.html($head) + $.html($body) + '</html>';
 }
 
 function getBuffer(stream, callback) {
@@ -32,39 +31,31 @@ exports.convert = function (event, context, callback) {
     var $ = cheerio.load(event.html);
 
     fs.readFile(froala_css, 'utf8', function (err, css) {
-        var additionalCss = "html{zoom:0.53;}";
+        var additionalCss = "";//"html{zoom:0.53;}";
         var $styles = $('<style type="text/css"></style>').text(additionalCss + css);
 
+        var header = getHtml($, $styles, 'header');
+        var content = getHtml($, $styles, 'content');
+        var footer = getHtml($, $styles, 'footer');
+
+        fs.writeFile('header.html', header);
         var options = {
-            header: getHtml($, $styles, 'header'),
-            html: getHtml($, $styles, 'content'),
-            footer: getHtml($, $styles, 'footer'),
-            phantomPath: phantomjs.path,
-            paperSize: {
-                
-            }
-        }
+            headerHtml: 'header.html'
+        };
 
-        // see: https://www.npmjs.com/package/phantom-html-to-pdf#image-in-header
-        if (options.header) {
-            // options.paperSize.headerHeight = '5.5cm';
-            var imgs = $("img", options.header).clone();
-            imgs.css("display","none");
-            var html = $(options.html).append(imgs);
-            options.html = $.html(html);
-        }
+        wkhtmltopdf.command = "C:/Program Files/wkhtmltopdf/bin/wkhtmltopdf.exe";
 
-        conversion(options, function (err, pdf) {
-            getBuffer(pdf.stream, function (buffer) {
-                if (callback) {
-                    var base64 = buffer.toString('base64');
-                    callback(err, {
-                        data: base64
-                    });
-                }
-            })
+        wkhtmltopdf(content, options, (err, stream) => {
+            if (!callback)
+                return;
 
-            conversion.kill();
+            getBuffer(stream, buffer => {
+                var base64 = buffer.toString('base64');
+                callback(err, {
+                    data: base64
+                });
+            });
         });
+
     });
 }
