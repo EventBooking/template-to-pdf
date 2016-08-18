@@ -1,0 +1,5 @@
+web:
+  image: template-to-pdf
+  command: npm test
+  volumes:
+  - ./test:/home/test

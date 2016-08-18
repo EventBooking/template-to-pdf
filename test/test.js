@@ -25,7 +25,7 @@ function convertHtml(name, cb) {
 
 var timer = new Stopwatch();
 timer.start();
-convertHtml('proposal', function () {
+convertHtml('header', function () {
     timer.stop();
     console.log(timer.ms + 'ms');
 });
