@@ -11,19 +11,21 @@ function getHtml($, $styles, section) {
     var $head = $('<head></head>')
         .append($styles);
 
-    var $body = $('<body class="fr-view"></body>')
+    var $body = $('<body class="fr-view" style="margin:0; padding: 0;"></body>')
         .append($.html($section));
 
     return '<!DOCTYPE html><html>' + $.html($head) + $.html($body) + '</html>';
 }
 
-function getBuffer(stream, callback) {
-    var buffer;
-    stream.on('data', function (data) {
-        buffer = data;
-    });
-    stream.on('end', function () {
-        callback(buffer);
+function getBuffer(stream) {
+    return new Promise((resolve, reject) => {
+        var buffer;
+        stream.on('data', function (data) {
+            buffer = data;
+        });
+        stream.on('end', function () {
+            resolve(buffer);
+        });
     });
 }
 
@@ -40,7 +42,8 @@ exports.convert = function (event, context, callback) {
 
         fs.writeFile('header.html', header);
         var options = {
-            headerHtml: 'header.html'
+            headerHtml: 'header.html',
+            headerSpacing: "2"
         };
 
         wkhtmltopdf.command = "C:/Program Files/wkhtmltopdf/bin/wkhtmltopdf.exe";
@@ -49,11 +52,9 @@ exports.convert = function (event, context, callback) {
             if (!callback)
                 return;
 
-            getBuffer(stream, buffer => {
+            getBuffer(stream).then(buffer => {
                 var base64 = buffer.toString('base64');
-                callback(err, {
-                    data: base64
-                });
+                callback(err, { data: base64 });
             });
         });
 
