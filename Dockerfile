@@ -1,6 +1,9 @@
-FROM node:6-onbuild
+FROM node:4.3
 
 MAINTAINER Michael Walters, mike@eventbooking.com
+
+RUN apt-get update
+RUN apt-get install zip -y
 
 WORKDIR /home
 
