@@ -1,7 +1,8 @@
 var wkhtmltopdf = require("wkhtmltopdf"),
     cheerio = require('cheerio'),
-    fs = require("fs"),
-    froala_css = './bower_components/froala-wysiwyg-editor/css/froala_style.css';
+    fs = require("fs");
+
+wkhtmltopdf.command = "./bin/wkhtmltopdf";
 
 function getHtml($, $styles, section) {
     var $head = $('<head></head>')
@@ -75,8 +76,6 @@ function render(content, options) {
 }
 
 exports.convert = function (event, context, callback) {
-    wkhtmltopdf.command = "./bin/wkhtmltopdf";
-
     var $ = cheerio.load(event.html);
 
     var options = {
@@ -92,7 +91,8 @@ exports.convert = function (event, context, callback) {
 
     Promise.all([
         readFile('styles.css', 'utf-8'),
-        readFile(froala_css, 'utf8')
+        readFile('bower_components/froala-wysiwyg-editor/css/froala_style.css', 'utf8'),
+        readFile('bower_components/angular-document/dist/angular-document.css', 'utf8')
     ]).then(styles => {
         $styles = $('<style type="text/css"></style>').text(styles.join(';'));
         var header = getHtml($, $styles, 'header');
