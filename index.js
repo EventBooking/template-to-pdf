@@ -79,8 +79,8 @@ exports.convert = function (event, context, callback) {
     var $ = cheerio.load(event.html);
 
     var options = {
-        headerHtml: "header.html",
-        footerHtml: "footer.html",
+        headerHtml: "/tmp/header.html",
+        footerHtml: "/tmp/footer.html",
         headerSpacing: 5,
         footerSpacing: 5,
         marginLeft: "10mm",

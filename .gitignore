@@ -2,3 +2,4 @@ node_modules
 bower_components
 test/*.pdf
 output/*.zip
+*.zip
