@@ -16,6 +16,8 @@ RUN npm install
 ADD bower.json bower.json
 RUN bower install
 
-ADD ./bin /home/bin
+ADD ./bin/wkhtmltopdf /home/bin/wkhtmltopdf
+RUN chmod +x /home/bin/wkhtmltopdf
+
 ADD index.js index.js
 ADD styles.css styles.css
