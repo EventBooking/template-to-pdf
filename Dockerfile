@@ -1,6 +1,9 @@
-FROM node:6-onbuild
+FROM node:4.3
 
 MAINTAINER Michael Walters, mike@eventbooking.com
+
+RUN apt-get update
+RUN apt-get install zip -y
 
 WORKDIR /home
 
@@ -13,4 +16,8 @@ RUN npm install
 ADD bower.json bower.json
 RUN bower install
 
+ADD ./bin/wkhtmltopdf /home/bin/wkhtmltopdf
+RUN chmod +x /home/bin/wkhtmltopdf
+
 ADD index.js index.js
+ADD styles.css styles.css

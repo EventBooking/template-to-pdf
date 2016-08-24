@@ -1,28 +1,25 @@
 {
   "name": "template-to-pdf",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "postinstall": "bower install",
     "test": "node test/test.js",
-    "prepackage": "rm template-to-pdf.zip",
-    "package": "zip -r template-to-pdf.zip *",
-    "upload": "aws s3 cp template-to-pdf.zip s3://venueops-pdf-output",
-    "pub": "aws lambda update-function-code --region us-east-1 --function-name arn:aws:lambda:us-east-1:513485385076:function:vops-convert-pdf --zip-file fileb://template-to-pdf.zip"
+    "package": "zip -r template-to-pdf-wx-2.0.0.zip index.js package.json styles.css bin node_modules bower_components/froala-wysiwyg-editor/css/froala_style.css bower_components/angular-document/dist/angular-document.css",
+    "upload": "aws s3 cp template-to-pdf-wx-2.0.0.zip s3://venueops-pdf-output",
+    "pub": "aws lambda update-function-code --region us-east-1 --function-name arn:aws:lambda:us-east-1:513485385076:function:vops-convert-pdf:2.0.0 --s3-bucket venueops-pdf-output s3://template-to-pdf-2.0.0.zip"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bower": "^1.7.9",
     "cheerio": "^0.20.0",
-    "phantom-html-to-pdf": "^0.4.1",
-    "phantomjs-prebuilt": "^2.1.7"
+    "timer-stopwatch": "^0.2.0",
+    "wkhtmltopdf": "^0.3.3"
   },
   "devDependencies": {
-    "bower": "^1.7.9",
-    "timer-stopwatch": "^0.2.0"
-  },
-  "engines": {
-    "node": "<=4.3.2"
+    "aws": "0.0.3-2",
+    "node-zip": "^1.1.1"
   }
 }

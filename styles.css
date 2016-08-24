@@ -1,0 +1,12 @@
+header { 
+    padding-top: 10mm;
+}
+
+footer { 
+    padding-bottom: 10mm; 
+}
+
+td,
+th {
+    border-style: solid;
+}
