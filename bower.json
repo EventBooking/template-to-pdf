@@ -19,6 +19,6 @@
   ],
   "dependencies": {
     "froala-wysiwyg-editor": "~2.2.4",
-    "angular-document": "https://github.com/EventBooking/angular-document.git#^v1.0.6"
+    "angular-document": "https://github.com/EventBooking/angular-document.git#^v1.0.7"
   }
 }
