@@ -1,6 +1,6 @@
 version: '2'
 services:
-  web:
+  test:
     build: .
     image: template-to-pdf
     command: npm test

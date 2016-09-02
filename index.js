@@ -8,7 +8,7 @@ function getHtml($, $styles, section) {
     var $head = $('<head></head>')
         .append($styles);
 
-    var $body = $('<body class="fr-view" style="margin:0; padding: 0;"></body>');
+    var $body = $('<body class="fr-view fr-print" style="margin:0; padding: 0;"></body>');
 
     var $section = $(section);
     if ($section.length > 0)

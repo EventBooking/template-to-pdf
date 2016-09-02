@@ -10,3 +10,11 @@ td,
 th {
     border-style: solid;
 }
+
+.fr-view.fr-print .fr-page-break {
+    height: 0;
+    margin: 0;
+    border: none;
+    background: none;
+    page-break-before: always;
+}
