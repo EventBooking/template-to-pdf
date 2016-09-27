@@ -4,7 +4,7 @@ var wkhtmltopdf = require("wkhtmltopdf"),
 
 wkhtmltopdf.command = "./bin/wkhtmltopdf";
 
-function getHtml($, $styles, section) {
+function getSection($, $styles, section) {
     var $head = $('<head></head>')
         .append($styles);
 
@@ -55,19 +55,20 @@ function writeFile(name, content) {
 
 function render(content, options) {
     return new Promise((resolve, reject) => {
+        var outputFile = options.output;
         wkhtmltopdf(content, options, (error, stream) => {
             if (error) {
                 reject(error);
                 return;
             }
 
-            var chunks = [];
-            stream.on('data', data => {
-                chunks.push(data);
-            });
+            fs.readFile(outputFile, (error, data) => {
+                if (error) {
+                    reject(error);
+                    return;
+                }
 
-            stream.on('end', () => {
-                var buffer = Buffer.concat(chunks);
+                var buffer = new Buffer(data);
                 resolve(buffer);
             });
 
@@ -75,16 +76,31 @@ function render(content, options) {
     });
 }
 
-exports.convert = function (event, context, callback) {
-    var $ = cheerio.load(event.html);
+function decodeHtml(base64) {
+    var buffer = new Buffer(base64, 'base64');
+    var utf8 = buffer.toString('utf8');
+    console.log(`${utf8.substr(0, 100)}...${utf8.substr(utf8.length - 100, 100)}`);
+    return utf8;
+}
+
+function getHtml(event) {
+    var html = event.base64 ? decodeHtml(event.base64) : event.html;
+    var $ = cheerio.load(html);
+    return $;
+}
+
+function convert(event, context, callback) {
+    var $ = getHtml(event);
 
     var options = {
-        headerHtml: "/tmp/header.html",
-        footerHtml: "/tmp/footer.html",
+        headerHtml: "/tmp/_header.html",
+        footerHtml: "/tmp/_footer.html",
         headerSpacing: 5,
         footerSpacing: 5,
         marginLeft: "10mm",
-        marginRight: "10mm"
+        marginRight: "10mm",
+        debug: true,
+        output: "/tmp/_output.pdf"
     };
 
     var $styles;
@@ -95,19 +111,29 @@ exports.convert = function (event, context, callback) {
         readFile('bower_components/angular-document/dist/angular-document.css', 'utf8')
     ]).then(styles => {
         $styles = $('<style type="text/css"></style>').text(styles.join(';'));
-        var header = getHtml($, $styles, 'header');
-        var footer = getHtml($, $styles, 'footer');
+        var header = getSection($, $styles, 'header');
+        var footer = getSection($, $styles, 'footer');
         return Promise.all([
             writeFile(options.footerHtml, footer),
             writeFile(options.headerHtml, header)
         ]);
     }).then(() => {
-        var content = getHtml($, $styles, 'content');
+        var content = getSection($, $styles, 'content');
         return render(content, options);
     }).then(buffer => {
         var base64 = buffer.toString('base64');
         callback(null, { data: base64 });
     }).catch(error => {
+        console.error(error);
         callback(error);
     });
+}
+
+exports.convert = function (event, context, callback) {
+    try {
+        console.log("covert");
+        return convert(event, context, callback)
+    } catch (ex) {
+        console.error(ex);
+    }
 }

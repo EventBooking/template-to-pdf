@@ -1,10 +1,19 @@
 version: '2'
 services:
+  wk:
+    build: .
+    image: template-to-pdf
+    command: ./bin/wkhtmltopdf "./test/_content.html" "./test/_output.pdf"
+    volumes:
+    - ./test:/home/test
+    - ./index.js:/home/index.js
+    - ./styles.css:/home/styles.css
   test:
     build: .
     image: template-to-pdf
     command: npm test
     volumes:
+    - ./package.json:/home/package.json
     - ./test:/home/test
     - ./index.js:/home/index.js
     - ./styles.css:/home/styles.css
@@ -15,4 +24,5 @@ services:
     command: npm run package
     volumes:
     - ./package.json:/home/package.json
+    - ./index.js:/home/index.js
     - ./output:/home/output
