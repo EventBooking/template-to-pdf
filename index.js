@@ -4,7 +4,9 @@ var wkhtmltopdf = require("wkhtmltopdf"),
 
 wkhtmltopdf.command = "./bin/wkhtmltopdf";
 
-function getSection($, $styles, section) {
+function getSection($, styles, section) {
+    var $styles = styles.map(x => $('<style type="text/css"></style>').text(x));
+
     var $head = $('<head></head>')
         .append($styles);
 
@@ -103,22 +105,22 @@ function convert(event, context, callback) {
         output: "/tmp/_output.pdf"
     };
 
-    var $styles;
+    var styles;
 
     Promise.all([
         readFile('styles.css', 'utf-8'),
         readFile('bower_components/froala-wysiwyg-editor/css/froala_style.css', 'utf8'),
         readFile('bower_components/angular-document/dist/angular-document.css', 'utf8')
-    ]).then(styles => {
-        $styles = $('<style type="text/css"></style>').text(styles.join(';'));
-        var header = getSection($, $styles, 'header');
-        var footer = getSection($, $styles, 'footer');
+    ]).then(_styles => {
+        styles = _styles;
+        var header = getSection($, styles, 'header');
+        var footer = getSection($, styles, 'footer');
         return Promise.all([
             writeFile(options.footerHtml, footer),
             writeFile(options.headerHtml, header)
         ]);
     }).then(() => {
-        var content = getSection($, $styles, 'content');
+        var content = getSection($, styles, 'content');
         return render(content, options);
     }).then(buffer => {
         var base64 = buffer.toString('base64');
