@@ -18,3 +18,7 @@ th {
     background: none;
     page-break-before: always;
 }
+
+.prewrap {
+    white-space: pre-wrap;
+}

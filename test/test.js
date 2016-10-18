@@ -34,7 +34,7 @@ var $timeout = setTimeout(() => {
 }, totalTime);
 
 timer.start();
-convertHtml('proposal_1', function () {
+convertHtml('font_test', function () {
     clearTimeout($timeout);
     timer.stop();
     console.log(`Done. ${timer.ms}ms`);
