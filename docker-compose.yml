@@ -8,6 +8,7 @@ services:
     - ./test:/home/test
     - ./index.js:/home/index.js
     - ./styles.css:/home/styles.css
+    - ./scripts.js:/home/scripts.js
   test:
     build: .
     image: template-to-pdf
@@ -17,6 +18,7 @@ services:
     - ./test:/home/test
     - ./index.js:/home/index.js
     - ./styles.css:/home/styles.css
+    - ./scripts.js:/home/scripts.js
   
   package:
     build: .

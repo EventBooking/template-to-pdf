@@ -4,17 +4,23 @@ var wkhtmltopdf = require("wkhtmltopdf"),
 
 wkhtmltopdf.command = "./bin/wkhtmltopdf";
 
-function getSection($, styles, section) {
+function getSection($, styles, scripts, section) {
     var $styles = styles.map(x => $('<style type="text/css"></style>').text(x));
-
     var $head = $('<head></head>')
         .append($styles);
 
     var $body = $('<body class="fr-view fr-print" style="margin:0; padding: 0;"></body>');
 
     var $section = $(section);
-    if ($section.length > 0)
-        $body.append($section);
+    if ($section.length > 0) {
+        var sectionHtml = $.html($section);
+        sectionHtml = sectionHtml.replace('[page]',`<span id="page"></span>`);
+        sectionHtml = sectionHtml.replace('[toPage]',`<span id="topage"></span>`);
+        $body.append(sectionHtml);
+    }
+
+    var $scripts = scripts.map(x => $('<script></script>').text(x));
+    $body.append($scripts);
 
     return '<!DOCTYPE html><html>' + $.html($head) + $.html($body) + '</html>';
 }
@@ -105,22 +111,27 @@ function convert(event, context, callback) {
         output: "/tmp/_output.pdf"
     };
 
-    var styles;
+    var _styles, _scripts;
 
     Promise.all([
         readFile('styles.css', 'utf-8'),
         readFile('bower_components/froala-wysiwyg-editor/css/froala_style.css', 'utf8'),
         readFile('bower_components/angular-document/dist/angular-document.css', 'utf8')
-    ]).then(_styles => {
-        styles = _styles;
-        var header = getSection($, styles, 'header');
-        var footer = getSection($, styles, 'footer');
+    ]).then(styles => {
+        _styles = styles;
+        return Promise.all([
+            readFile('scripts.js', 'utf-8')
+        ]);
+    }).then(scripts => {
+        _scripts = scripts;
+        var header = getSection($, _styles, _scripts, 'header');
+        var footer = getSection($, _styles, _scripts, 'footer');
         return Promise.all([
             writeFile(options.footerHtml, footer),
             writeFile(options.headerHtml, header)
         ]);
     }).then(() => {
-        var content = getSection($, styles, 'content');
+        var content = getSection($, _styles, _scripts, 'content');
         return render(content, options);
     }).then(buffer => {
         var base64 = buffer.toString('base64');

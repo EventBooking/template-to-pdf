@@ -21,3 +21,4 @@ RUN chmod +x /home/bin/wkhtmltopdf
 
 ADD index.js index.js
 ADD styles.css styles.css
+ADD scripts.js scripts.js
