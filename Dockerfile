@@ -1,24 +1,24 @@
-FROM node:4.3
+FROM lambci/lambda:build-nodejs4.3
+# FROM node:4.3
 
 MAINTAINER Michael Walters, mike@eventbooking.com
 
-RUN apt-get update
-RUN apt-get install zip -y
+# make /etc read-only (like Lambda)
+RUN chmod 0444 /etc
 
-WORKDIR /home
+WORKDIR /var/task
 
 RUN echo '{ "allow_root": true }' > /root/.bowerrc
-RUN npm install -g bower
 
 ADD package.json package.json
+ADD bower.json bower.json
+
 RUN npm install
 
-ADD bower.json bower.json
-RUN bower install
-
-ADD ./bin/wkhtmltopdf /home/bin/wkhtmltopdf
-RUN chmod +x /home/bin/wkhtmltopdf
+ADD ./bin/wkhtmltopdf ./bin/wkhtmltopdf
+RUN chmod +x ./bin/wkhtmltopdf
 
 ADD index.js index.js
 ADD styles.css styles.css
 ADD scripts.js scripts.js
+ADD ./fontconfig ./fontconfig

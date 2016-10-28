@@ -3,3 +3,4 @@ bower_components
 test/*.pdf
 output/*.zip
 *.zip
+test/tmp

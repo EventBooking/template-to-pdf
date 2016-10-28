@@ -2,7 +2,22 @@ var wkhtmltopdf = require("wkhtmltopdf"),
     cheerio = require('cheerio'),
     fs = require("fs");
 
+fixKerning();
 wkhtmltopdf.command = "./bin/wkhtmltopdf";
+
+function fixKerning() {
+    var _exec = require('child_process').execSync;
+    var exec = cmd => {
+        console.log(`Executing: ${cmd}`);
+        _exec(cmd, {});
+    };
+
+    process.env['LD_LIBRARY_PATH'] = `/tmp/fontconfig/usr/lib/`;
+
+    exec(`cp -r ./fontconfig /tmp`);
+    exec(`chmod +x /tmp/fontconfig/usr/bin/fc-cache`);
+    exec(`/tmp/fontconfig/usr/bin/fc-cache`);
+}
 
 function getSection($, styles, scripts, section) {
     var $styles = styles.map(x => $('<style type="text/css"></style>').text(x));
@@ -14,8 +29,8 @@ function getSection($, styles, scripts, section) {
     var $section = $(section);
     if ($section.length > 0) {
         var sectionHtml = $.html($section);
-        sectionHtml = sectionHtml.replace('[page]',`<span id="page"></span>`);
-        sectionHtml = sectionHtml.replace('[toPage]',`<span id="topage"></span>`);
+        sectionHtml = sectionHtml.replace('[page]', `<span id="page"></span>`);
+        sectionHtml = sectionHtml.replace('[toPage]', `<span id="topage"></span>`);
         $body.append(sectionHtml);
     }
 
@@ -144,7 +159,6 @@ function convert(event, context, callback) {
 
 exports.convert = function (event, context, callback) {
     try {
-        console.log("covert");
         return convert(event, context, callback)
     } catch (ex) {
         console.error(ex);
