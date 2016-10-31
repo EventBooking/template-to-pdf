@@ -22,3 +22,7 @@ th {
 .prewrap {
     white-space: pre-wrap;
 }
+
+html {
+    font-family: 'Source Serif Pro', serif;
+}
