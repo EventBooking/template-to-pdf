@@ -18,5 +18,6 @@ services:
     image: template-to-pdf
     command: npm run package
     volumes:
+    - ./package.json:/var/task/package.json
     - ./output:/var/task/output
     - ./index.js:/var/task/index.js

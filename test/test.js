@@ -34,7 +34,7 @@ var $timeout = setTimeout(() => {
 }, totalTime);
 
 timer.start();
-convertHtml('kerning', function () {
+convertHtml('test', function () {
     clearTimeout($timeout);
     timer.stop();
     console.log(`Done. ${timer.ms}ms`);
