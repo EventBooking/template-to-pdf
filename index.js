@@ -1,23 +1,31 @@
-var wkhtmltopdf = require("wkhtmltopdf"),
+var express = require("express")
+    bodyParser = require("body-parser")
+    wkhtmltopdf = require("wkhtmltopdf"),
     cheerio = require('cheerio'),
-    fs = require("fs");
+    fs = require("fs")
+    uniqueFilename = require("unique-filename");
 
-fixKerning();
+var _exec = require('child_process').execSync;
+var exec = cmd => {
+    console.log(`Executing: ${cmd}`);
+    _exec(cmd, {});
+};
 wkhtmltopdf.command = "./bin/wkhtmltopdf";
 
-function fixKerning() {
-    var _exec = require('child_process').execSync;
-    var exec = cmd => {
-        console.log(`Executing: ${cmd}`);
-        _exec(cmd, {});
-    };
+var app = express();
+app.use(bodyParser.urlencoded({ limit: "50mb", extended: false }));
+app.use(bodyParser.json({ limit: "50mb" }));
 
-    process.env['LD_LIBRARY_PATH'] = `/tmp/fontconfig/usr/lib/`;
+app.post('/', function(req, res) {
+    convert(req.body).then(result => {
+        res.send({ data: result });
+    }).catch(result => {
+        res.status(500);
+        res.send();
+    });
+});
 
-    exec(`cp -r ./fontconfig /tmp`);
-    exec(`chmod +x /tmp/fontconfig/usr/bin/fc-cache`);
-    exec(`/tmp/fontconfig/usr/bin/fc-cache`);
-}
+var server = app.listen(80);
 
 function getSection($, styles, scripts, section) {
     var $styles = styles.map(x => $('<style type="text/css"></style>').text(x));
@@ -76,6 +84,10 @@ function writeFile(name, content) {
     });
 }
 
+function removeFile(name) {
+    exec(`rm ${name}`);
+}
+
 function render(content, options) {
     return new Promise((resolve, reject) => {
         var outputFile = options.output;
@@ -112,55 +124,56 @@ function getHtml(event) {
     return $;
 }
 
-function convert(event, context, callback) {
-    var $ = getHtml(event);
+function convert(event) {
+    var $ = getHtml(event),
+        headerFile = uniqueFilename("/tmp", "header") + ".html",
+        footerFile = uniqueFilename("/tmp", "footer") + ".html",
+        outputFile = uniqueFilename("/tmp", "output") + ".pdf";
 
     var options = {
-        headerHtml: "/tmp/_header.html",
-        footerHtml: "/tmp/_footer.html",
+        headerHtml: headerFile,
+        footerHtml: footerFile,
         headerSpacing: 5,
         footerSpacing: 5,
         marginLeft: "10mm",
         marginRight: "10mm",
         debug: true,
-        output: "/tmp/_output.pdf"
+        output: outputFile
     };
 
     var _styles, _scripts;
 
-    Promise.all([
-        readFile('styles.css', 'utf-8'),
-        readFile('bower_components/froala-wysiwyg-editor/css/froala_style.css', 'utf8'),
-        readFile('bower_components/angular-document/dist/angular-document.css', 'utf8')
-    ]).then(styles => {
-        _styles = styles;
-        return Promise.all([
-            readFile('scripts.js', 'utf-8')
-        ]);
-    }).then(scripts => {
-        _scripts = scripts;
-        var header = getSection($, _styles, _scripts, 'header');
-        var footer = getSection($, _styles, _scripts, 'footer');
-        return Promise.all([
-            writeFile(options.footerHtml, footer),
-            writeFile(options.headerHtml, header)
-        ]);
-    }).then(() => {
-        var content = getSection($, _styles, _scripts, 'content');
-        return render(content, options);
-    }).then(buffer => {
-        var base64 = buffer.toString('base64');
-        callback(null, { data: base64 });
-    }).catch(error => {
-        console.error(error);
-        callback(error);
+    return new Promise((resolve, reject) => {
+        Promise.all([
+            readFile('styles.css', 'utf-8'),
+            readFile('bower_components/froala-wysiwyg-editor/css/froala_style.css', 'utf8'),
+            readFile('bower_components/angular-document/dist/angular-document.css', 'utf8')
+        ]).then(styles => {
+            _styles = styles;
+            return Promise.all([
+                readFile('scripts.js', 'utf-8')
+            ]);
+        }).then(scripts => {
+            _scripts = scripts;
+            var header = getSection($, _styles, _scripts, 'header');
+            var footer = getSection($, _styles, _scripts, 'footer');
+            return Promise.all([
+                writeFile(footerFile, footer),
+                writeFile(headerFile, header)
+            ]);
+        }).then(() => {
+            var content = getSection($, _styles, _scripts, 'content');
+            return render(content, options);
+        }).then(buffer => {
+            var base64 = buffer.toString('base64');
+            resolve(base64);
+        }).catch(error => {
+            console.error(error);
+            reject(error);
+        }).then(() => {
+            removeFile(footerFile);
+            removeFile(headerFile);
+            removeFile(outputFile);
+        });
     });
-}
-
-exports.convert = function (event, context, callback) {
-    try {
-        return convert(event, context, callback)
-    } catch (ex) {
-        console.error(ex);
-    }
 }

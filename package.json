@@ -5,21 +5,20 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "bower install",
-    "test": "node test/test.js",
-    "package": "zip -r output/$npm_package_name-$npm_package_version.zip index.js package.json styles.css scripts.js 100-kerning.fonts.conf fontconfig bin node_modules bower_components/froala-wysiwyg-editor/css/froala_style.css bower_components/angular-document/dist/angular-document.css",
-    "upload:prod": "aws s3 cp output/%npm_package_name%-%npm_package_version%.zip s3://venueops.packages",
-    "upload:dev": "aws s3 cp output/%npm_package_name%-%npm_package_version%.zip --region us-west-2 s3://venueops.packages.dev",
-    "pub:prod": "aws lambda update-function-code --region us-east-1 --function-name arn:aws:lambda:us-east-1:513485385076:function:vops-convert-pdf:2.0.4 --s3-bucket venueops-pdf-output s3://%npm_package_name%-%npm_package_version%.zip",
-    "pub:dev": "aws lambda update-function-code --region us-west-2 --function-name arn:aws:lambda:us-east-1:513485385076:function:vops-convert-pdf:2.0.4 --s3-bucket venueops-pdf-output s3://%npm_package_name%-%npm_package_version%.zip"
+    "start": "node index.js",
+    "test": "node test/test.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.17.1",
     "bower": "^1.7.9",
     "cheerio": "^0.20.0",
+    "express": "^4.15.2",
     "mv": "^2.1.1",
     "timer-stopwatch": "^0.2.0",
-    "wkhtmltopdf": "^0.3.3"
+    "unique-filename": "^1.1.0",
+    "wkhtmltopdf": "^0.3.4"
   },
   "devDependencies": {
     "aws": "0.0.3-2",

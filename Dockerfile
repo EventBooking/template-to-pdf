@@ -1,5 +1,4 @@
-FROM lambci/lambda:build-nodejs4.3
-# FROM node:4.3
+FROM node:6.10
 
 MAINTAINER Michael Walters, mike@eventbooking.com
 
@@ -13,7 +12,7 @@ RUN echo '{ "allow_root": true }' > /root/.bowerrc
 ADD package.json package.json
 ADD bower.json bower.json
 
-RUN npm install
+RUN npm install --unsafe-perm
 
 ADD ./bin/wkhtmltopdf ./bin/wkhtmltopdf
 RUN chmod +x ./bin/wkhtmltopdf
@@ -22,3 +21,9 @@ ADD index.js index.js
 ADD styles.css styles.css
 ADD scripts.js scripts.js
 ADD ./fontconfig ./fontconfig
+
+# kerning fix
+ENV LD_LIBRARY_PATH='/tmp/fontconfig/usr/lib/'
+RUN cp -r ./fontconfig /tmp
+RUN chmod +x /tmp/fontconfig/usr/bin/fc-cache
+RUN /tmp/fontconfig/usr/bin/fc-cache

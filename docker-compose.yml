@@ -1,5 +1,13 @@
 version: '2'
 services:
+  start:
+    build: .
+    image: template-to-pdf
+    command: npm start
+    ports:
+    - "80:80"
+    mem_limit: 1000m
+
   test:
     build: .
     image: template-to-pdf
@@ -12,12 +20,3 @@ services:
     - ./scripts.js:/var/task/scripts.js
     - ./test/tmp:/tmp
     - ./fontconfig:/var/task/fontconfig
-  
-  package:
-    build: .
-    image: template-to-pdf
-    command: npm run package
-    volumes:
-    - ./package.json:/var/task/package.json
-    - ./output:/var/task/output
-    - ./index.js:/var/task/index.js
