@@ -3,21 +3,8 @@ services:
   start:
     build: .
     image: template-to-pdf
-    command: npm start
+    command: npm start -- 9051
     ports:
-    - "80:80"
+    - "9051:9051"
     mem_limit: 1028m
     restart: always
-
-  test:
-    build: .
-    image: template-to-pdf
-    command: npm test
-    volumes:
-    - ./package.json:/var/task/package.json
-    - ./test:/var/task/test
-    - ./index.js:/var/task/index.js
-    - ./styles.css:/var/task/styles.css
-    - ./scripts.js:/var/task/scripts.js
-    - ./test/tmp:/tmp
-    - ./fontconfig:/var/task/fontconfig

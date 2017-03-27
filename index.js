@@ -1,33 +1,37 @@
-var express = require("express")
-    bodyParser = require("body-parser")
+var express = require("express"),
+    bodyParser = require("body-parser"),
     wkhtmltopdf = require("wkhtmltopdf"),
     cheerio = require('cheerio'),
-    fs = require("fs")
+    fs = require("fs"),
     uniqueFilename = require("unique-filename");
+
+var port = process.argv.length > 2 ? parseInt(process.argv[2]) : 80;
 
 var _exec = require('child_process').execSync;
 var exec = cmd => {
     console.log(`Executing: ${cmd}`);
     _exec(cmd, {});
 };
+
 wkhtmltopdf.command = "./bin/wkhtmltopdf";
 
 var app = express();
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: false }));
 app.use(bodyParser.json({ limit: "50mb" }));
 
-app.post('/', function(req, res) {
+app.post('/', function (req, res) {
     res.setTimeout(0);
 
     convert(req.body).then(result => {
         res.send({ data: result });
-    }).catch(result => {
+    }).catch(error => {
+        console.error(error);
         res.status(500);
         res.send();
     });
 });
 
-var server = app.listen(80);
+var server = app.listen(port);
 
 function getSection($, styles, scripts, section) {
     var $styles = styles.map(x => $('<style type="text/css"></style>').text(x));
@@ -116,7 +120,6 @@ function render(content, options) {
 function decodeHtml(base64) {
     var buffer = new Buffer(base64, 'base64');
     var utf8 = buffer.toString('utf8');
-    console.log(`${utf8.substr(0, 100)}...${utf8.substr(utf8.length - 100, 100)}`);
     return utf8;
 }
 
@@ -139,7 +142,6 @@ function convert(event) {
         footerSpacing: 5,
         marginLeft: "10mm",
         marginRight: "10mm",
-        debug: true,
         output: outputFile
     };
 
@@ -170,7 +172,6 @@ function convert(event) {
             var base64 = buffer.toString('base64');
             resolve(base64);
         }).catch(error => {
-            console.error(error);
             reject(error);
         }).then(() => {
             removeFile(footerFile);
