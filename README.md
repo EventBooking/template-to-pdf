@@ -1,13 +1,33 @@
-Building
-`docker-compose build`
+# Template to Pdf
 
-Testing
-`docker-compose run -d test`
+## Usage
+``` 
+const templateToPdf = require('template-to-pdf');
+templateToPdf.convert(encodedHtml, options).then(result => {
+    console.log(result);
+}).catch( error => {
+    console.error(error);
+});
+```
 
-Packaging and Uploading to S3
-* update the version in `package.json`
-* run `docker-compose run -d package`
-* run `npm run upload:dev` or `npm run upload:prod`
-  * (dev drops into venueops.packages.dev)
-  * (prod drops into venueops.package)
-* log into AWS, and update the lambda service (template-to-pdf) from the proper S3 url
+## Options
+```
+{
+    orientation: "landscape",
+    pageSize: "letter"
+}
+```
+
+## Building docker environment
+```docker-compose build```
+
+## Starting docker environment
+```docker-compose run --rm --service-ports start```
+
+## Running test
+```docker-compose run --rm --service-ports start npm test```
+
+## Debugging test
+```docker-compose run --rm --service-ports start npm run debug```
+
+...then attach vscode debugger

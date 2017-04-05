@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postinstall": "bower install",
-    "start": "node index.js",
-    "test": "node test/test.js"
+    "debug": "node --debug=0.0.0.0:9231 --debug-brk ./test/test.js",
+    "test": "node ./test/test.js",
+    "postinstall": "node postinstall.js"
   },
   "author": "",
   "license": "ISC",

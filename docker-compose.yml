@@ -3,8 +3,14 @@ services:
   start:
     build: .
     image: template-to-pdf
-    command: npm start -- 9051
+    command: /bin/bash
     ports:
-    - "9051:9051"
+    - "9231:9231"
+    volumes:
+    - ./test:/home/test
+    - ./index.js:/home/index.js
+    - ./styles.css:/home/styles.css
+    - ./scripts.js:/home/scripts.js
+    - ./package.json:/home/package.json
     mem_limit: 1028m
     restart: always
