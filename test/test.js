@@ -14,9 +14,7 @@ function convertHtml(name) {
             var buffer = new Buffer(data, 'utf8');
             var encodedHtml = buffer.toString('base64');
 
-            converter.convert({
-                base64: encodedHtml
-            }).then(result => {
+            converter.convert(encodedHtml, {}).then(result => {
                 var buffer = new Buffer(result, 'base64');
                 fs.writeFileSync(path.join(__dirname, `${name}.pdf`), buffer);
                 resove(buffer);
