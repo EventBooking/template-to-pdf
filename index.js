@@ -1,6 +1,7 @@
 var path = require('path'),
     uniqueFilename = require("unique-filename"),
-    utils = require("./utils.js");
+    utils = require("./utils.js"),
+    cheerio = require("cheerio");
 
 async function convert(encodedHtml, options) {
     // ToDo: add any options into _options
