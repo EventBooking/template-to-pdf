@@ -1,23 +1,17 @@
 version: '2'
 services:
-  test:
+  start:
     build: .
     image: template-to-pdf
-    command: npm test
+    command: /bin/bash
+    ports:
+    - "9231:9231"
     volumes:
-    - ./package.json:/var/task/package.json
-    - ./test:/var/task/test
-    - ./index.js:/var/task/index.js
-    - ./styles.css:/var/task/styles.css
-    - ./scripts.js:/var/task/scripts.js
-    - ./test/tmp:/tmp
-    - ./fontconfig:/var/task/fontconfig
-  
-  package:
-    build: .
-    image: template-to-pdf
-    command: npm run package
-    volumes:
-    - ./package.json:/var/task/package.json
-    - ./output:/var/task/output
-    - ./index.js:/var/task/index.js
+    - ./test:/home/test
+    - ./index.js:/home/index.js
+    - ./utils.js:/home/utils.js
+    - ./styles.css:/home/styles.css
+    - ./scripts.js:/home/scripts.js
+    - ./package.json:/home/package.json
+    mem_limit: 1028m
+    restart: always

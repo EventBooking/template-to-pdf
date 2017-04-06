@@ -1,41 +1,38 @@
-var htmlToPdf = require('../index.js'),
+var converter = require('../index.js'),
     fs = require("fs"),
-    Stopwatch = require("timer-stopwatch");
+    Stopwatch = require("timer-stopwatch"),
+    path = require('path');
 
-function convertHtml(name, cb) {
-    fs.readFile('./test/' + name + '.html', 'utf8', function (err, data) {
-        if (err) {
-            console.log(err);
-            return;
-        }
-        htmlToPdf.convert({
-            base64: (new Buffer(data, 'utf8')).toString('base64')
-        }, null, function (err, result) {
+function convertHtml(name) {
+    return new Promise((resove, reject) => {
+        fs.readFile(path.join(__dirname, `${name}.html`), 'utf8', function (err, data) {
             if (err) {
                 console.log(err);
                 return;
             }
 
-            var buffer = new Buffer(result.data, 'base64');
-            console.log(buffer);
-            fs.writeFileSync('./test/' + name + '.pdf', buffer);
-            cb();
+            var buffer = new Buffer(data, 'utf8');
+            var encodedHtml = buffer.toString('base64');
+
+            converter.convert(encodedHtml, {}).then(result => {
+                var buffer = new Buffer(result, 'base64');
+                fs.writeFileSync(path.join(__dirname, `${name}.pdf`), buffer);
+                resove(buffer);
+            }).catch(err => {
+                reject(err);
+            });
         });
     });
 }
 
-var timer = new Stopwatch(),
-    timeSeconds = 8,
-    totalTime = timeSeconds * 1000;
-
-var $timeout = setTimeout(() => {
-    console.log(`process timed out after ${timeSeconds}s`);
-    process.exit(1);
-}, totalTime);
-
+var timer = new Stopwatch();
 timer.start();
-convertHtml('test', function () {
-    clearTimeout($timeout);
+convertHtml('test').then(buffer => {
     timer.stop();
+    console.log(buffer);
     console.log(`Done. ${timer.ms}ms`);
+    process.exit(0);
+}).catch(err => {
+    console.error(err);
+    process.exit(1);
 });
