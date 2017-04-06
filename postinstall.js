@@ -1,4 +1,4 @@
-const path = require('path')
+const path = require('path'),
     exec = require('child_process').execSync;
 
 exec(`bower install`);
