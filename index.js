@@ -4,14 +4,16 @@ var path = require('path'),
     cheerio = require("cheerio");
 
 async function convert(encodedHtml, options) {
-    // ToDo: add any options into _options
     const _options = {
         headerHtml: uniqueFilename("/tmp", "header") + ".html",
         footerHtml: uniqueFilename("/tmp", "footer") + ".html",
         headerSpacing: 5,
         footerSpacing: 5,
         marginLeft: "10mm",
-        marginRight: "10mm"
+        marginRight: "10mm",
+        orientation: options.orientation,
+        pageSize: options.pageSize,
+        debug: options.debug
     };
 
     try {
