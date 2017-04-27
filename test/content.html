@@ -1,0 +1,750 @@
+<!DOCTYPE html><html><head><style type="text/css">header { 
+    padding-top: 10mm;
+}
+
+footer { 
+    padding-bottom: 10mm; 
+}
+
+td,
+th {
+    border-style: solid;
+}
+
+.fr-view.fr-print hr {
+    page-break-after: auto;
+}
+
+.fr-view.fr-print .fr-page-break {
+    height: 0;
+    margin: 0;
+    border: none;
+    background: none;
+    page-break-before: always;
+}
+
+.prewrap {
+    white-space: pre-wrap;
+}
+
+html {
+    font-family: 'Source Serif Pro', serif;
+    /*box-sizing: border-box;
+    font-size: 16px;
+    line-height: 1.5;*/
+}</style><style type="text/css">/*!
+ * froala_editor v2.3.5 (https://www.froala.com/wysiwyg-editor)
+ * License https://froala.com/wysiwyg-editor/terms/
+ * Copyright 2014-2016 Froala Labs
+ */
+
+.clearfix::after {
+  clear: both;
+  display: block;
+  content: "";
+  height: 0;
+}
+.fr-view strong {
+  font-weight: 700;
+}
+.fr-view table {
+  border: none;
+  border-collapse: collapse;
+  empty-cells: show;
+  max-width: 100%;
+}
+.fr-view table.fr-dashed-borders td,
+.fr-view table.fr-dashed-borders th {
+  border-style: dashed;
+}
+.fr-view table.fr-alternate-rows tbody tr:nth-child(2n) {
+  background: #f5f5f5;
+}
+.fr-view table td,
+.fr-view table th {
+  border: 1px solid #dddddd;
+}
+.fr-view table td:empty,
+.fr-view table th:empty {
+  height: 20px;
+}
+.fr-view table td.fr-highlighted,
+.fr-view table th.fr-highlighted {
+  border: 1px double red;
+}
+.fr-view table td.fr-thick,
+.fr-view table th.fr-thick {
+  border-width: 2px;
+}
+.fr-view table th {
+  background: #e6e6e6;
+}
+.fr-view hr {
+  clear: both;
+  user-select: none;
+  -o-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  page-break-after: always;
+}
+.fr-view .fr-file {
+  position: relative;
+}
+.fr-view .fr-file::after {
+  position: relative;
+  content: "\1F4CE";
+  font-weight: normal;
+}
+.fr-view pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+.fr-view[dir="rtl"] blockquote {
+  border-left: none;
+  border-right: solid 2px #5e35b1;
+  margin-right: 0;
+  padding-right: 5px;
+  padding-left: 0px;
+}
+.fr-view[dir="rtl"] blockquote blockquote {
+  border-color: #00bcd4;
+}
+.fr-view[dir="rtl"] blockquote blockquote blockquote {
+  border-color: #43a047;
+}
+.fr-view blockquote {
+  border-left: solid 2px #5e35b1;
+  margin-left: 0;
+  padding-left: 5px;
+  color: #5e35b1;
+}
+.fr-view blockquote blockquote {
+  border-color: #00bcd4;
+  color: #00bcd4;
+}
+.fr-view blockquote blockquote blockquote {
+  border-color: #43a047;
+  color: #43a047;
+}
+.fr-view span.fr-emoticon {
+  font-weight: normal;
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "NotoColorEmoji", "Segoe UI Symbol", "Android Emoji", "EmojiSymbols";
+  display: inline;
+  line-height: 0;
+}
+.fr-view span.fr-emoticon.fr-emoticon-img {
+  background-repeat: no-repeat !important;
+  font-size: inherit;
+  height: 1em;
+  width: 1em;
+  min-height: 20px;
+  min-width: 20px;
+  display: inline-block;
+  margin: -0.1em 0.1em 0.1em;
+  line-height: 1;
+  vertical-align: middle;
+}
+.fr-view .fr-text-gray {
+  color: #AAA !important;
+}
+.fr-view .fr-text-bordered {
+  border-top: solid 1px #222;
+  border-bottom: solid 1px #222;
+  padding: 10px 0;
+}
+.fr-view .fr-text-spaced {
+  letter-spacing: 1px;
+}
+.fr-view .fr-text-uppercase {
+  text-transform: uppercase;
+}
+.fr-view img {
+  position: relative;
+  max-width: 100%;
+}
+.fr-view img.fr-dib {
+  margin: 5px auto;
+  display: block;
+  float: none;
+  vertical-align: top;
+}
+.fr-view img.fr-dib.fr-fil {
+  margin-left: 0;
+}
+.fr-view img.fr-dib.fr-fir {
+  margin-right: 0;
+}
+.fr-view img.fr-dii {
+  display: inline-block;
+  float: none;
+  vertical-align: bottom;
+  margin-left: 5px;
+  margin-right: 5px;
+  max-width: calc(100% - (2 * 5px));
+}
+.fr-view img.fr-dii.fr-fil {
+  float: left;
+  margin: 5px 5px 5px 0;
+  max-width: calc(100% - 5px);
+}
+.fr-view img.fr-dii.fr-fir {
+  float: right;
+  margin: 5px 0 5px 5px;
+  max-width: calc(100% - 5px);
+}
+.fr-view img.fr-rounded {
+  border-radius: 100%;
+  -moz-border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+.fr-view img.fr-bordered {
+  border: solid 10px #CCC;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+.fr-view .fr-video {
+  text-align: center;
+  position: relative;
+}
+.fr-view .fr-video > * {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  max-width: 100%;
+  border: none;
+}
+.fr-view .fr-video.fr-dvb {
+  display: block;
+  clear: both;
+}
+.fr-view .fr-video.fr-dvb.fr-fvl {
+  text-align: left;
+}
+.fr-view .fr-video.fr-dvb.fr-fvr {
+  text-align: right;
+}
+.fr-view .fr-video.fr-dvi {
+  display: inline-block;
+}
+.fr-view .fr-video.fr-dvi.fr-fvl {
+  float: left;
+}
+.fr-view .fr-video.fr-dvi.fr-fvr {
+  float: right;
+}
+.fr-view a.fr-strong {
+  font-weight: 700;
+}
+.fr-view a.fr-green {
+  color: green;
+}
+.fr-view button.fr-rounded,
+.fr-view input.fr-rounded,
+.fr-view textarea.fr-rounded {
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+.fr-view button.fr-large,
+.fr-view input.fr-large,
+.fr-view textarea.fr-large {
+  font-size: 24px;
+}
+/**
+ * Image style.
+ */
+a.fr-view.fr-strong {
+  font-weight: 700;
+}
+a.fr-view.fr-green {
+  color: green;
+}
+/**
+ * Link style.
+ */
+img.fr-view {
+  position: relative;
+  max-width: 100%;
+}
+img.fr-view.fr-dib {
+  margin: 5px auto;
+  display: block;
+  float: none;
+  vertical-align: top;
+}
+img.fr-view.fr-dib.fr-fil {
+  margin-left: 0;
+}
+img.fr-view.fr-dib.fr-fir {
+  margin-right: 0;
+}
+img.fr-view.fr-dii {
+  display: inline-block;
+  float: none;
+  vertical-align: bottom;
+  margin-left: 5px;
+  margin-right: 5px;
+  max-width: calc(100% - (2 * 5px));
+}
+img.fr-view.fr-dii.fr-fil {
+  float: left;
+  margin: 5px 5px 5px 0;
+  max-width: calc(100% - 5px);
+}
+img.fr-view.fr-dii.fr-fir {
+  float: right;
+  margin: 5px 0 5px 5px;
+  max-width: calc(100% - 5px);
+}
+img.fr-view.fr-rounded {
+  border-radius: 100%;
+  -moz-border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+img.fr-view.fr-bordered {
+  border: solid 10px #CCC;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+</style><style type="text/css">@import url("https://fonts.googleapis.com/css?family=Source+Code+Pro|Source+Sans+Pro|Source+Serif+Pro");
+@-webkit-keyframes sidebar-in {
+  0% {
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+@keyframes sidebar-in {
+  0% {
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+.document-editor {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: fixed;
+  background-color: #eee;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 4;
+}
+.document-editor-wysiwyg {
+  -webkit-box-ordinal-group: 2;
+  -webkit-order: 1;
+      -ms-flex-order: 1;
+          order: 1;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+@-webkit-keyframes toolbar-in {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+@keyframes toolbar-in {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+.document-editor-wysiwyg-content {
+  box-sizing: content-box;
+}
+.document-editor-wysiwyg-content--editors {
+  overflow: auto;
+}
+.document-editor-wysiwyg-content--toolbar {
+  position: relative;
+}
+.document-editor-wysiwyg-content-add {
+  text-align: center;
+  padding: 1em;
+}
+.document-editor-wysiwyg-content-add-button {
+  cursor: pointer;
+  color: #ccc;
+}
+.document-editor-wysiwyg-content-add-button:hover {
+  color: #777;
+}
+.document-editor-wysiwyg-content-add-button:active {
+  color: #333;
+}
+.document-editor-sidebar {
+  -webkit-box-ordinal-group: 3;
+  -webkit-order: 2;
+      -ms-flex-order: 2;
+          order: 2;
+  -webkit-animation: sidebar-in 1s;
+          animation: sidebar-in 1s;
+  border-left: solid 1px #ccc;
+  background-color: #fff;
+}
+.document-editor-wysiwyg-content-item {
+  padding: 5px;
+}
+.document-editor-wysiwyg-content-item--hidden {
+  display: none;
+}
+.document-editor-wysiwyg-content-item--header {
+  padding-top: 1em;
+}
+.document-editor-wysiwyg-content-item--footer {
+  padding-bottom: 1em;
+}
+.document-editor-sidebar-content {
+  overflow: auto;
+}
+.document-editor-sidebar-content:empty {
+  display: none;
+}
+.fr-box .fr-wrapper {
+  background-color: #fff;
+  border: solid 1px #ccc;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+}
+.fr-box.fr-basic.fr-top .document-editor .fr-wrapper {
+  box-shadow: 0 0 0 0.75pt #d1d1d1, 0 0 3pt 0.75pt #ccc;
+  border-radius: 0;
+}
+.document-editor .fr-toolbar {
+  border-top: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+}
+.document-editor .fr-box {
+  margin: 0 auto;
+}
+.document-editor .fr-box.fr-basic.fr-top {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.document-editor .fr-wrapper .fr-placeholder {
+  display: block;
+}
+.document-editor .fr-wrapper.show-placeholder .fr-placeholder {
+  -webkit-animation: placeholder-in 0.3s;
+          animation: placeholder-in 0.3s;
+  top: 10px;
+  left: 10px;
+}
+.document-editor .fr-wrapper:not(.show-placeholder) .fr-placeholder {
+  -webkit-transform: rotate(270deg) translate(-40px, -25px);
+          transform: rotate(270deg) translate(-40px, -25px);
+  -webkit-transform-origin: 0 top;
+          transform-origin: 0 top;
+  -webkit-animation: placeholder-out 0.3s;
+          animation: placeholder-out 0.3s;
+}
+@-webkit-keyframes placeholder-out {
+  0% {
+    opacity: 0;
+    -webkit-transform: rotate(270deg) translate(-40px, 0);
+            transform: rotate(270deg) translate(-40px, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: rotate(270deg) translate(-40px, -25px);
+            transform: rotate(270deg) translate(-40px, -25px);
+  }
+}
+@keyframes placeholder-out {
+  0% {
+    opacity: 0;
+    -webkit-transform: rotate(270deg) translate(-40px, 0);
+            transform: rotate(270deg) translate(-40px, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: rotate(270deg) translate(-40px, -25px);
+            transform: rotate(270deg) translate(-40px, -25px);
+  }
+}
+@-webkit-keyframes placeholder-in {
+  0% {
+    opacity: 0;
+    -webkit-transform: rotate(0) translate(-40px, 0);
+            transform: rotate(0) translate(-40px, 0);
+  }
+  1000% {
+    opacity: 1;
+    -webkit-transform: rotate(0) translate(0, 0);
+            transform: rotate(0) translate(0, 0);
+  }
+}
+@keyframes placeholder-in {
+  0% {
+    opacity: 0;
+    -webkit-transform: rotate(0) translate(-40px, 0);
+            transform: rotate(0) translate(-40px, 0);
+  }
+  1000% {
+    opacity: 1;
+    -webkit-transform: rotate(0) translate(0, 0);
+            transform: rotate(0) translate(0, 0);
+  }
+}
+.fr-popup.fr-desktop.fr-active {
+  z-index: 999;
+}
+.fr-view hr {
+  -webkit-break-after: auto;
+     -moz-break-after: auto;
+          break-after: auto;
+}
+.fr-view p {
+  margin: 0;
+  padding: 0;
+}
+.fr-view ol,
+.fr-view ul {
+  margin: 0;
+}
+.fr-view .fr-border-thick {
+  border-width: 2px;
+}
+.fr-view .fr-border-dark {
+  border-color: #555;
+}
+.fr-view .fr-no-left-border {
+  border-left-style: none;
+}
+.fr-view .fr-no-left-border:hover {
+  border-style: dotted;
+}
+.fr-view .fr-no-right-border {
+  border-right-style: none;
+}
+.fr-view .fr-no-right-border:hover {
+  border-style: dotted;
+}
+.fr-view .fr-no-top-border {
+  border-top-style: none;
+}
+.fr-view .fr-no-top-border:hover {
+  border-style: dotted;
+}
+.fr-view .fr-no-bottom-border {
+  border-bottom-style: none;
+}
+.fr-view .fr-no-bottom-border:hover {
+  border-style: dotted;
+}
+.fr-view .fr-no-borders {
+  border-style: none;
+}
+.fr-view .fr-no-borders td,
+.fr-view .fr-no-borders th {
+  border-style: none;
+}
+.fr-view .fr-no-borders:hover {
+  border-style: dotted;
+}
+.fr-view .fr-no-borders:hover td,
+.fr-view .fr-no-borders:hover th {
+  border-style: dotted;
+}
+.fr-view .fr-table-pad-none td,
+.fr-view .fr-table-pad-none th {
+  padding: 0;
+}
+.fr-view td,
+.fr-view th {
+  padding: .25em;
+}
+.fr-view .fr-table-pad-lg td,
+.fr-view .fr-table-pad-lg th {
+  padding: .5em;
+}
+.fr-view .fr-table-pad-xlg td,
+.fr-view .fr-table-pad-xlg th {
+  padding: 1em;
+}
+.fr-view .fr-page-break {
+  height: 6px;
+  margin: 8px -8px;
+  border-style: solid none;
+  background: -webkit-linear-gradient(rgba(0, 0, 0, 0.1), #eee, rgba(0, 0, 0, 0.05));
+  background: linear-gradient(rgba(0, 0, 0, 0.1), #eee, rgba(0, 0, 0, 0.05));
+  border-color: rgba(0, 0, 0, 0.15);
+}
+.fr-view .listType-decimal {
+  list-style-type: decimal;
+}
+.fr-view .listType-lowerAlpha {
+  list-style-type: lower-alpha;
+}
+.fr-view .listType-upperAlpha {
+  list-style-type: upper-alpha;
+}
+.fr-view .listType-lowerRoman {
+  list-style-type: lower-roman;
+}
+.fr-view .listType-upperRoman {
+  list-style-type: upper-roman;
+}
+.fr-custom-layer {
+  margin: 10px;
+}
+document-pdf {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #eee;
+  z-index: 4;
+}
+.document-viewer-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+.document-viewer-toolbar {
+  margin: 1em;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.document-viewer-toolbar-icon {
+  color: #aaa;
+  cursor: pointer;
+}
+.document-viewer-toolbar-icon:hover {
+  color: #333;
+}
+.document-viewer-toolbar-title {
+  margin: 0 1em;
+}
+.document-viewer-main {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  overflow: auto;
+  position: relative;
+}
+.document-viewer-pages {
+  padding: 1em;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.document-viewer-page {
+  border: solid 1px #ccc;
+  box-shadow: 0 0 0 0.75pt #d1d1d1, 0 0 3pt 0.75pt #ccc;
+}
+.document-viewer-page + .document-viewer-page {
+  margin-top: 1em;
+}
+.document-viewer-sidebar {
+  -webkit-box-ordinal-group: 3;
+  -webkit-order: 2;
+      -ms-flex-order: 2;
+          order: 2;
+  -webkit-animation: sidebar-in 1s;
+          animation: sidebar-in 1s;
+  border-left: solid 1px #ccc;
+  background-color: #fff;
+}
+</style></head><body class="fr-view fr-print" style="margin:0; padding: 0;"><content><!-- CONTRACT TEMPLATE --><p style="text-align: center;"><br></p><p style="text-align: center;"><img class="fr-dib fr-draggable" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPgAAAA8CAYAAABLqHepAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MzY4QTU3N0E2M0IzMTFFNTlFMTBBMTc0NkFFRTFFNDQiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MzY4QTU3Nzk2M0IzMTFFNTlFMTBBMTc0NkFFRTFFNDQiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkM1REEwRDVDMjk4RTExRTU4NThBQ0RCQzk3OTRCMTUwIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkM1REEwRDVEMjk4RTExRTU4NThBQ0RCQzk3OTRCMTUwIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+3C14PQAAE3lJREFUeNrsXQl4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" style="width: 209px; height: 50.8567px;"></p><p style="text-align: center;"><br></p><p style="text-align: center;"><br></p><p style="text-align: center;"><span style="font-size: 16px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;"><br></span></span></p><p style="text-align: center;"><span style="font-size: 16px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;"><br></span></span></p><p style="text-align: center;"><span style="font-size: 18px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;"><strong><u>LICENSE AGREEMENT</u></strong></span></span></p><p style="text-align: center;"><br></p><p style="text-align: center;"><br></p><p style="text-align: center;"><br></p><p style="text-align: center;"><br></p><p style="text-align: center;"><br></p><p style="text-align: center;"><span style="font-size: 16px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;">Between</span></span></p><p style="text-align: center;"><br></p><p style="text-align: center;"><span style="font-size: 16px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;"><br><strong>VENUEOPS CONVENTION CENTER&#xA0;</strong></span></span></p><p style="text-align: center;"><br></p><p style="text-align: center;"><span style="font-size: 16px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;"><strong><br></strong></span></span></p><p style="text-align: center;"><span style="font-size: 16px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;">and&#xA0;</span></span></p><p style="text-align: center;"><br></p><p style="text-align: center;"><span style="font-size: 16px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;"><strong><br></strong></span></span></p><p style="text-align: center;"><span style="font-size: 16px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;"><strong>{{Account.Name}}</strong></span></span></p><p style="text-align: center;"><br></p><p style="text-align: center;"><span style="font-size: 16px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;"><br></span></span></p><p style="text-align: center;"><span style="font-size: 16px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;">for&#xA0;</span></span></p><p style="text-align: center;"><br></p><p style="text-align: center;"><span style="font-size: 16px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;"><br></span></span></p><p style="text-align: center;"><span style="font-size: 16px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;"><strong>{{Event.Name}}</strong></span></span></p><p style="text-align: center;"><br></p><p style="text-align: center;"><span style="font-size: 14px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;">{{join-distinct (date Event.Start &quot;d&quot;) (date Event.End &quot;d&quot;) &apos; - &apos;}}</span></span></p><p style="text-align: center;"><span style="font-size: 16px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;"><br></span></span></p><p style="text-align: center;"><br></p><p style="text-align: center;"><br></p><p style="text-align: center;"><br></p><p style="text-align: center;"><br></p><p style="text-align: center;"><br></p><p style="text-align: center;"><br></p><p style="text-align: center;"><br></p><p style="text-align: center;"><br></p><p style="text-align: center;"><br></p><p style="text-align: center;"><span style="font-size: 16px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;"><br></span></span></p><p style="text-align: center;"><span style="font-size: 16px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;"><strong class=""><br></strong></span></span><span style="font-size: 14px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;"><strong class="">Contract # {{Event.UniqueNumber}}</strong></span></span></p><p style="text-align: center;"><span style="font-size: 14px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;"><strong>{{date DateNow}}</strong></span></span></p><hr class="fr-page-break"><p><span style="font-size: 14px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;"><strong>VENUEOPS CONVENTION CENTER<br>LICENSE AGREEMENT<br>Contract # {{Event.UniqueNumber}}</strong></span></span></p><p><span style="font-size: 14px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;"><br><br>THIS AGREEMENT is made and entered on {{date DateNow &quot;D&quot;}} between the VenueOps Convention Center and VOPS (&quot;Licensor&quot;) which has been engaged to manage and operate the <strong>VenueOps Convention Center</strong> (the &quot;Center&quot;) located at 2575 Willow Point Way, Knoxville, TN 37922 and {{#with Account}}<strong>{{Name}}</strong> (&quot;Licensee&quot;) with offices at {{AddressUnit}} {{AddressStreet}}, {{AddressLocality}}, {{AddressRegion}} {{AddressPostalCode}}{{/with}}. &#xA0;This Agreement is void if not executed by Licensee and returned to Licensor by {{date DateNow}}.<br><br>1. <strong><u>Premises</u></strong>. &#xA0;Subject to the terms and conditions contained herein, Licensor grants to Licensee the nonassignable right to use and occupy the following portions of the Center (&quot;Premises&quot;), for the dates set forth:<br><br><strong>EXHIBIT SPACE</strong></span></span></p><p><span style="font-size: 12px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;"><strong>&#xA0;</strong><br></span></span></p><table style="margin-right: calc(0% - 0px); width: 100%;"><tbody><tr><td class="fr-border-dark" style="width: 10%;"><span style="font-size: 12px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;"><strong><u>Date</u></strong></span><br></span></td><td class="fr-border-dark" style="width: 20%;"><span style="font-size: 12px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;"><strong><u>Hours</u></strong></span><br></span></td><td class="fr-border-dark" style="width: 25%;"><span style="font-size: 12px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;"><strong><u>Space(s)</u></strong></span><u><strong><br></strong></u></span></td><td class="fr-border-dark" style="width: 25%;"><span style="font-size: 12px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;"><strong><u>Function(s)</u></strong></span><u><strong><br></strong></u></span></td><td class="fr-border-dark" style="width: 20%;"><span style="font-size: 12px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;"><strong><u>Setup</u></strong></span><br></span></td></tr><tr><td class="fr-border-dark" style="width: 10%;"><span style="font-size: 12px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;">{{#tablerow Charges.RentalCharges}}{{date Date}}</span><br></span></td><td class="fr-border-dark" style="width: 20%;"><span style="font-size: 12px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;">{{#if IsAllDay}}All Day{{else}}{{time StartTime}} - {{time EndTime}}{{/if}}</span><br></span></td><td class="fr-border-dark" style="width: 25%;"><span style="font-size: 12px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;">{{RoomName}}</span><br></span></td><td class="fr-border-dark " style="width: 25%;"><span style="font-size: 12px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;">{{FunctionName}}</span><br></span></td><td class="fr-border-dark" style="width: 20%;"><span style="font-size: 12px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;">{{RoomSetup}}{{/tablerow}}</span><br></span></td></tr></tbody></table><p><span style="font-size: 12px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;">&#xA0;&#xA0;</span></span></p><p><span style="font-size: 14px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;">Licensee shall have the rights of ingress and egress through the halls and corridors of the Center, but acquires hereby no right in any other part of the Center other than the Premises.</span></span></p><p><span style="font-size: 14px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;"><br></span></span></p><p><span style="font-size: 14px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;">2. <strong><u>Purpose</u></strong>. &#xA0;The premises are to be used solely for the purpose of <strong>{{Event.Name}}</strong> (the &quot;Event&quot;).</span></span></p><p><span style="font-size: 14px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;"><br></span></span></p><p><span style="font-size: 14px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;">3. <strong><u>Term</u></strong>. &#xA0;The term of this License shall be from the period beginning at {{date Event.Start &quot;D&quot;}} and ending at {{date Event.End &quot;D&quot;}} inclusive (the &quot;Term&quot;).</span></span></p><p><span style="font-size: 14px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;"><br></span></span></p><p><span style="font-size: 14px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;">4. <strong><u>Rent and Other Charges</u></strong>. &#xA0;</span></span></p><p><span style="font-size: 14px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;"><br></span></span></p><p><span style="font-size: 14px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;">A. Licensee agrees to pay Licensor, as Rent for the use of the Premises, the following:</span></span></p><p><span style="font-size: 14px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;">&#xA0;</span></span></p><p><span style="font-size: 14px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;"><strong>RENT - {{money Charges.RentalTotals.SubTotal}}</strong></span></span></p><p><span style="font-size: 14px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;"><strong>TAXES - {{money Charge.RentalTotals.TaxTotal}}<br>TOTAL RENTAL - {{money Charges.RentalTotals.Total}}</strong><br><br>B. Total Rent shall be payable as follows: &#xA0;(a) forty (40%) percent thereof on execution of this Agreement; (b) thirty (30%) percent thereof no later than sixty (60) days prior to commencement of the Term; (c) thirty (30%) percent thereof no later than thirty (30) days prior to commencement of the Term; and (d) the balance to be paid prior to commencement of the Term.<br>&#xA0;<br>C. Estimated Food &amp; Beverage shall be payable as follows: (a) sixty percent (60%) thereof no later than sixty (60) days prior to commencement of the Term; and (b) forty (40%) percent thereof no later than thirty (30) days prior to commencement of the Term.<br><br>D. Licensee shall pay Licensor, in addition to Rent, any sum due to Licensor for additional services, accommodations, personnel or materials furnished by Licensor at rates set in the VenueOps Convention Center Event Planning Guide. &#xA0;It is estimated that these additional costs will total $TBD (&quot;Estimated Costs&quot;). &#xA0;Payment of Estimated Costs must be made thirty (30) days prior to the commencement of the Term.<br><br>E. Checks for all amounts due and owing shall be made payable to the VenueOps Convention Center.<br><br>F. All sums due and owing to the Licensor under this Agreement shall bear interest at a rate of eighteen (18%) percent per annum computed daily from 30 days after the date due until the date paid.<br><br>G. Licensee certifies that SIGNER is the &quot;Authorized Representative&quot; of Licensee for the purpose of this Agreement, and shall have full authority to bind Licensee with respect to any written or verbal order for goods and services to be provided by Licensor.<br><br>5. <strong><u>Rules and Regulations</u></strong>. &#xA0;Licensor&apos;s Event Guide and all Rules and Regulations promulgated from time to time by Licensor are hereby incorporated in this License by reference, and Licensee shall comply fully therewith. &#xA0;Licensee hereby acknowledges receipt of one copy of the Event Guide and Rules and Regulations.<br><br>6. <strong><u>Insurance</u></strong>. &#xA0;Licensee shall provide proof of coverage in the amounts of One Million Dollars ($1,000,000) of Combined Single Limit Coverage to include: Comprehensive Form, Premises/Operations, Contractual, Broad Form Property Damage and Products/Completed Operations. &#xA0;The term of such coverage shall coincide with the Term. &#xA0;Such insurance shall specifically include Licensor and VOPS, the VenueOps Convention Center, the VenueOps Convention Center Authority (&quot;Authority&quot;), the State of Rhode Island, their respective directors, officers, agents and employees, as additional insureds on a Primary and Non-contributing basis. &#xA0;Waiver of Subrogation in favor of additional insureds applies to the policy. &#xA0;Such insurance shall cover any damage or injury to any and all persons attending or property connected with the Event when such persons or property are located in the Center. &#xA0;If Licensee has not provided Licensor with such insurance certificate at least thirty (30) days prior to the commencement of the Term, Licensor in Licensor&apos;s sole discretion may (i) obtain such insurance at Licensee&apos;s expense without prior notification to Licensee or (ii) cancel the Event and Licensee shall be liable for all Rent and other costs as stated herein and Licensor shall not be responsible for any expenses or losses sustained by Licensee resulting therefrom. &#xA0;All policies must state that the policy may not be canceled or reduced by the insurance carrier without giving thirty (30) days prior notice in writing to Licensor and Licensee. Licensee agrees to provide Workers&apos; Compensation Coverage for Licensee&apos;s employees to comply with the laws of the State of Rhode Island.<br><br>7. <strong><u>Indemnification</u></strong>. &#xA0;Licensee shall indemnify, hold harmless and defend Licensor and VOPS, the VenueOps Convention Center, the VenueOps Convention Center Authority, the State of Rhode Island, their respective directors, officers, agents and employees, from and against any and all losses, claims, liability, damage, action, or expense (including, without limitation, costs of investigation, court &#xA0;costs and attorney&apos;s fees) arising out of or relating to (i) Licensee&apos;s use of the Center, (ii) the conduct of Licensee&apos;s business, (iii) any activity, work or thing which may be permitted or suffered by Licensee in or about the Center, (iv) any breach or default in the performance of any obligation of Licensee under this Agreement, (v) any negligence of Licensee or any of its agents, employees, contractors, &#xA0;invitees, attendees, patrons and guests, (vi) the use of patented, trademarked or copyrighted materials, equipment, devices, processes or dramatic rights furnished to or used by Licensee, its exhibitors or other persons in connection with Licensee&apos;s use of the Center, (vii) the theft or misappropriation of any of Licensee&apos;s property or property of exhibitors or others brought into the Center, (viii) rigging from or to the physical structure of the Center or any fixture thereto, set up, alterations, and/or improvements at or to the Center necessitated by and/or performed with respect to the Event, and (ix) Licensee&#x2019;s failure to deliver the materials described in Paragraph 10 within the specified time periods, including, without limitation overtime pay and short-notice delivery fees. &#xA0;Licensee hereby assumes all risk of damage to its property placed in the Center or injury to its officers, directors, employees, agents, contractors, invitees, attendees, patrons, guests or any attendees at the Event or in or about the Center from any cause, and hereby waives all claims in respect thereof against Licensor and the Authority.<br><br>8. <strong><u>Concessions and Catering</u></strong>. &#xA0;Licensor reserves to itself and its in-house caterer all catering privileges including the sale of all food and beverages. &#xA0;All catering during the Event must be performed by Licensor&apos;s exclusive in-house caterer unless there are special requirements that cannot be performed by Licensor&apos;s caterer, and then only with the prior written approval of Licensor. &#xA0;Licensee is responsible for making its own arrangements with the Licensor&apos;s caterer. &#xA0;With the prior assessment of Licensee, Licensor may set-up, sell and remove any concessionable merchandise, food, beverage, or service of any kind within the Premises, including, but not limited, to novelties, souvenirs, record albums, programs, coat checking and sundries. &#xA0;Licensee agrees that it will not permit any concessionable items to be sold by it or its contractors without the prior written approval of Licensor.<br><br>9. <strong><u>Televisions and Broadcasting Rights</u></strong>. &#xA0;Licensee shall not televise or broadcast any Event scheduled to be presented in the Premises under the terms of this Agreement without the prior written approval of the Licensor.<br><br>10. <strong><u>Exhibitor Floor Plan and Set-Up</u></strong>. &#xA0;At least thirty (30) days before Licensee publishes or distributes any material containing the floor plan for the Event, but in no case later than ninety (90) days prior to the commencement of the Term, Licensee shall provide Licensor with (i) five (5) copies of the floor plan which shall be a part of this Agreement indicating all spaces to be used for Exhibits and registration, all details of technical data for the Event and all information pertinent to Licensee&apos;s operational policies for the Event, and (ii) five (5) copies of a full and complete description of all set-up (including, without limitation, any staging, lighting, video boards, and/or rigging from or to the physical structure of the Facility or any fixture thereto required for the Event), electrical, communications systems, and plumbing work anticipated to be needed for the Event. &#xA0;After approval by the Licensor, the floor plan will be forwarded to the Providence City Fire Marshall for review. Licensor may, by written notice to Licensee, require Licensee to make such changes, deletions and additions in the floor plan, the set-up or the operational policies as Licensor may deem necessary for the care and efficient operation of the Center. &#xA0;If Licensee fails to make any such requested changes, deletions or additions within ten (10) days after receipt of notice thereof, such failure shall constitute a default by Licensee hereunder. &#xA0;No later than thirty (30) days prior to the commencement of the Term, Licensee shall provide a detailed written list of its requirements for all function space other than exhibit areas.<br><br>11. <strong><u>Personnel</u></strong>. &#xA0;Licensee agrees to employ at its own expense all necessary personnel not furnished by Licensor. &#xA0;Licensor reserves the rights to determine the minimum number of personnel required, to regulate the character of service provided and to require advance payment by Licensee to independent contractors.<br><br>12. <strong><u>Utilities</u></strong>. &#xA0;The Licensor will provide customary and normal lighting, heating, air conditioning, electricity, and water at no additional costs to Licensee. &#xA0;Licensee shall pay the cost of special lighting, electricity, gas, water, telephone, or other utilities required for exhibits or performances. &#xA0;In the event Licensor is unable to furnish any of the foregoing services resulting from circumstances beyond the control of Licensor, such failure shall not be considered a breach of this Agreement. &#xA0;Utilities may be at reduced levels during move in and move out periods. &#xA0;Licensor shall have the sole right to control and regulate the temperature of the Premises and to operate and control the heat and/or air conditioning units. &#xA0;<br><br>13. <strong><u>Defacement of Property; Signs and Posters</u></strong>. &#xA0;Licensee shall not cause or permit the Premises to be defaced, injured, marred or damaged in any manner. &#xA0; Licensee shall not make any alterations of any kind to the Center or equipment therein. Licensee shall be responsible for any and all damage caused by Licensee&apos;s use of the Premises and shall return the same to Licensor in the same condition as when possession was received, reasonable wear and tear excepted. &#xA0;Licensee shall pay to Licensor, on receipt of an invoice, the reasonable cost of any and all repairs required to be made to the Premises or equipment located therein as a result of the use thereof by Licensee, its agents, employees, contractors, invitees, attendees, patrons and guests. &#xA0;Licensee may post signs, advertisements, show bills, posters or cards only of a type and in those locations in and about the Center approved in advance by Licensor. &#xA0;Licensor may remove all such signs, advertisements, show bills, posters or cards of any description for which Licensor has not given prior approval. &#xA0;Use of the partition track for hanging of signage is strictly prohibited.<br><br>14. <strong><u>Default by Licensee</u></strong>. &#xA0;Licensee shall be in default of this Agreement; (a) if it fails to pay any amount due under this Agreement; (b) if it breaches any provisions of this Agreement or the Event Guide or any Rules and Regulations promulgated by Licensor; and provided to Licensee; (c) if it violates any applicable laws or ordinances during its use of the Premises; or, (d) if it should dissolve or cease doing business as a going concern or become insolvent or bankrupt. &#xA0;Upon Licensee&apos;s default, Licensor, at its sole option, may terminate this Agreement and/or exercise all rights and remedies at law or in equity. &#xA0;The rights and remedies hereto given to Licensor shall be deemed cumulative and no single or partial exercise of a right or remedy shall preclude any other or further exercise of a right or remedy. &#xA0;Licensor shall be under no obligation to relicense the Premises. &#xA0;In the event of cancellation of this Agreement by Licensee, Licensee shall pay Minimum Rent as set forth in Paragraph 4 and all costs incurred to the date of cancellation as liquidated damages. &#xA0;In the event Licensee holds over beyond the end of the Term, Licensee shall be responsible for all costs and damages to Licensor and subsequent licensees of the Premises.<br><br>15. <strong><u>Vacation of Premises</u></strong>. &#xA0;Any property of any kind brought upon the Premises by Licensee, its agents, employees, contractors, invitees, attendees, patrons and guests shall be at the sole risk of Licensee and shall be promptly removed from the Premises on the expiration of the Term. &#xA0;In the event that the Premises, or any portion thereof, is not vacated by Licensee at the expiration of the Term, Licensor may move from the Premises and/or dispose of, at the expense of the Licensee, any and all goods, wares, merchandise and property, then occupying the Premises, or portion thereof; and Licensor shall not be liable for any damages or loss sustained by reason of such removal or disposal, and Licensor and the Authority are hereby expressly released from any and all claims for damages.<br>&#xA0;<br>16. <strong><u>Force Majeure</u></strong>. &#xA0;If the Premises or any part of the Center is destroyed or damaged by fire or any other cause, or if in the opinion of Licensor any other casualty or unforeseen occurrence renders the Center unsafe or impracticable to use, including, without limitation, acts of God, fires, floods, epidemics, quarantine restrictions, terrorist acts, strikes, labor disputes, failure of public utilities, or unusually severe weather, then this Agreement shall be terminated and the Licensee shall be entitled to reimbursement of the unearned portion of &#xA0;Rent, fees, and charges for support personnel and services, provided, however, if any act or omission of Licensee, its agents, employees, contractors, invitees, attendees, patrons or guests has rendered the Center unsafe or impracticable to use, then Licensee shall be liable for all Rent, fees and charges hereunder in addition to such other damages as may result from such acts or omissions. &#xA0;Licensee hereby waives any claims for damages or compensation from Licensor on account of such termination.<br><br>17.<strong><u>&#xA0;Laws and Regulations</u></strong>. &#xA0;Licensee will comply with all laws of the United States, the State of Rhode Island, all municipal ordinances and all orders of police and fire departments and any other municipal authority and will obtain, and pay for, all necessary permits, taxes and licenses; and will not do nor suffer to be done anything on the Premises during the Term in violation of any laws, ordinances, rules or orders. &#xA0;Licensor agrees to indemnify and hold harmless the Licensee from any and all liability, claims, fines, penalties and reasonable attorney&#x2019;s fees arising from any alleged failure of the physical structure, permanent improvements or permanent building access of the Center or from any temporary modification(s) to the physical structure or permanent building access, which may be necessary due to renovation, construction or repair of the Center to comply with the requirements of the Americans with Disabilities Act of 1990 (42 U.S.C. &#xA7;12101 et seq.) and all other applicable federal, state and local laws and regulations intended to provide equal accessibility for persons with disabilities (&quot;Disabilities Laws&quot;), subject to the limitations below. &#xA0;Licensor will not indemnify nor hold harmless any Licensee against, and the Licensee shall be solely responsible for, any liability, claim, fine, penalty or attorneys&apos; fees arising from any failure by Licensee to comply with any requirement of the Disabilities Laws relating to the non-permanent accessibility requirements of the Act, including but not limited to seating arrangement, auxiliary aids, set-up or organization by any exhibitor, decorator, agent or other representative of Licensee of any meeting room, display, exhibit, presentation or concession or for any liability, claim, fine , penalty or attorneys&apos; fees other than those arising solely from any failure of the physical structures, permanent facilities or permanent building access of the Center to comply with &#xA0;the &#xA0;Disabilities Laws; except that &#xA0;Licensee shall not be responsible for auxiliary facilities provided at &#xA0;Licensee&apos; s request which Licensor has agreed in writing to provide for use in the Center to comply with the Disabilities Laws. &#xA0;Licensee agrees that it will use reasonable efforts in a timely manner to determine the needs and requirements of disabled persons who may be attending the event and in accordance with the rules and regulations promulgated by Licensor, inform Licensor of the results of its efforts and of the accessibility services the Licensor will provide to accommodate such disabled attendee(s) in compliance with the requirements of the Disabilities Laws.<br><br>18. <strong><u>Access to Public Records</u></strong>. &#x201C;This contract, or portions thereof, may be subject to public disclosure pursuant to Rhode Island&#x2019;s Access to Public Records Act, G.L. 1956 chapter 2 of title 38.&#x201D;<br><br>19. <strong><u>Non-Exclusive Right</u></strong>. &#xA0;Licensor retains the right to use and/or license use of such portions of the Center as are not licensed by this Agreement. &#xA0;Licensor warrants however, that it will not authorize or permit any other licensee to engage in operations or activities that would interfere with Licensee&apos;s enjoyment of the rights granted under this Agreement.<br><br>20. <strong><u>Nondiscrimination</u></strong>. &#xA0;With respect to its activities conducted in the Center during the Term, Licensee agrees to comply with all federal, state, and local laws prohibiting discrimination by reason of race, color, age, sex, marital status, sexual orientation, political ideology, creed, religion, ancestry, national origin or the presence of any sensory, mental or physical handicap or the use of a trained guide dog by a blind, deaf or physically disabled person.<br><br>21. <strong><u>Event Success</u></strong>. &#xA0;IT IS EXPRESSLY UNDERSTOOD AND AGREED THAT NO OFFICER, DIRECTOR, EMPLOYEE, AGENT, REPRESENTATIVE, OR SALES PERSON OF VOPS, THE VenueOps Convention Center OR THE VenueOps Convention Center AUTHORITY OR ANY THIRD PARTY HAS THE AUTHORITY TO MAKE, HAS MADE, OR WILL BE DEEMED TO HAVE MADE, ANY REPRESENTATION, WARRANTY, COVENANT, AGREEMENT, GUARANTEE, OR PROMISE WITH RESPECT TO THE FINANCIAL SUCCESS OR PERFORMANCE, AND/OR OTHER SUCCESS, OF THE EVENT. &#xA0;LICENSEE HEREBY ACKNOWLEDGES AND AGREES THAT ANY ASSESSMENT OF THE FINANCIAL SUCCESS OR PERFORMANCE, AND/OR OTHER SUCCESS, OF THE EVENT IS SOLELY THAT OF LICENSEE&#x2019;S OWN DETERMINATION AND JUDGMENT.<br><br>22. <strong><u>Acts and Omissions of Third Parties</u></strong>. &#xA0;VOPS shall not be liable in any way for any acts and/or omissions of any third party, including, without limitation, any ticket agency used by VOPS in connection with the sale of tickets for any event.<br><br>23. <strong><u>Interruption or Termination of the Event</u></strong>. &#xA0;Licensee assumes full responsibility for the acts and conduct of all persons admitted to the Premises, on Licensee&#x2019;s behalf. &#xA0;Licensor retains the right to cause the interruption or termination of the Event or the ejection of any person in the interest of public order or safety. &#xA0; Licensee hereby waives any claim for damages or compensation should this License be so interrupted or terminated.<br><br>24. <strong><u>Assignment or Transfer</u></strong>. &#xA0;Licensee shall not assign, transfer or encumber this Agreement, nor the license given hereby. &#xA0;Licensor may assign this Agreement to the Authority.<br><br>25. <strong><u>Choice of Law</u></strong>. &#xA0;This Agreement shall be governed, construed, applied and enforced in accordance with the laws of the State of Rhode Island. &#xA0;Licensee consents to and confers personal jurisdiction on all courts of record in Rhode Island, and of the federal government located in Rhode Island, and agrees that service of process may be made by mailing a copy of the summons to Licensee at Licensee&apos;s address.<br><br>26. <strong><u>Notice</u></strong>. &#xA0;For the purposes of notice or demand, the respective parties shall be served by hand delivery or certified or registered mail, return receipt requested, at the addressees next to their signatures below.<br><br>27. <strong><u>Entire Agreement</u></strong>. &#xA0;This Agreement, Licensor&apos;s Event Guide, and all rules and regulations promulgated by Licensor from time to time constitute the entire agreement of the parties hereto and representations, inducement or agreements, oral or otherwise, between the parties not contained and embodied herein shall not be of any force and effect. &#xA0;This Agreement may only be altered, changed or amended by an instrument in writing signed by both parties hereto.<br><br>28. <strong><u>Severability</u></strong>. &#xA0;If any provision of this Agreement is held invalid, the remainder shall not be affected by such invalidity.<br></span></span></p><p><span style="font-size: 14px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;"><br>IN WITNESS WHEREOF, we, the parties hereto, have executed this Agreement the day and year written below.<br><br></span></span></p><table style="margin-right: calc(0% - 0px); width: 100%;"><tbody><tr><td class="fr-no-borders" colspan="2" style="width: 50%;"><span style="font-size: 14px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;">{{#with Account}}<strong>{{Name}}</strong><br>{{AddressUnit}} {{AddressStreet}}<br>{{AddressLocality}}, {{AddressRegion}} {{AddressPostalCode}}{{/with}}<br></span></span><br></td><td class="fr-no-borders" colspan="2" style="width: 50%;"><span style="font-size: 14px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;"><strong>VENUE OPS CONVENTION CENTER</strong><br>2575 Willow Point Way<br>Knoxville, TN 37931<br></span></span><br></td></tr><tr><td class="fr-no-borders" style="width: 20%; text-align: center;"><span style="font-size: 14px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;">By:&#xA0;</span></span><br></td><td class="fr-no-left-border  fr-no-right-border  fr-no-top-border  fr-border-dark" style="width: 30%;"><br></td><td class="fr-no-borders" style="width: 20%; text-align: center;"><span style="font-size: 14px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;">By:&#xA0;</span></span><br></td><td class="fr-no-left-border  fr-no-right-border  fr-no-top-border  fr-border-dark" style="width: 30%;"><br></td></tr><tr><td class="fr-no-borders" style="width: 20%; text-align: center;"><span style="font-size: 14px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;">Title:&#xA0;</span></span><br></td><td class="fr-no-left-border  fr-no-right-border  fr-no-top-border  fr-border-dark" style="width: 30%;"><br></td><td class="fr-no-borders" style="width: 20%; text-align: center;"><span style="font-size: 14px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;">Title:&#xA0;</span></span><br></td><td class="fr-no-left-border  fr-no-right-border  fr-no-top-border  fr-border-dark" style="width: 30%;"><span style="font-size: 14px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;">GENERAL MANAGER</span></span><br></td></tr><tr><td class="fr-no-borders" style="width: 20%; text-align: center;"><span style="font-size: 14px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;">Date:&#xA0;</span></span><br></td><td class="fr-no-left-border  fr-no-right-border  fr-no-top-border  fr-border-dark" style="width: 30%;"><br></td><td class="fr-no-borders" style="width: 20%; text-align: center;"><span style="font-size: 14px;"><span style="font-family: &apos;Source Serif Pro&apos;, serif;">Date:&#xA0;</span></span><br></td><td class="fr-no-left-border  fr-no-right-border  fr-no-top-border  fr-border-dark" style="width: 30%;"><br></td></tr></tbody></table></content><script>var vars = {};
+var x = window.location.search.substring(1).split('&');
+for (var i in x) {
+    var z = x[i].split('=', 2);
+    vars[z[0]] = unescape(z[1]);
+}
+function setContent(name, value) {
+    var el = document.getElementById('page');
+    if(!el) return;
+    el.innerHTML = value;
+}
+setContent('page', vars.page);
+setContent('topage', vars.topage);</script></body></html>

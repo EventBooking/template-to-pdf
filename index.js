@@ -14,8 +14,11 @@ async function convert(encodedHtml, options) {
         footerSpacing: 5,
         marginLeft: "10mm",
         marginRight: "10mm",
-        orientation: options.orientation || "portrait",
-        pageSize: options.pageSize || "letter",
+        dpi: 96,
+        disableSmartShrinking: true,
+        orientation: options.orientation || "Portrait",
+        pageSize: options.pageSize || "Letter",
+        javascriptDelay: 1000,
         debug: typeof options.debug != undefined ? options.debug : false
     };
 
@@ -42,6 +45,7 @@ async function convert(encodedHtml, options) {
         ]);
 
         var content = utils.getSection($, _styles, _scripts, 'content');
+        utils.writeFile('./test/content.html', content);
         var buffer = await utils.render(content, _options);
 
         var base64 = buffer.toString('base64');

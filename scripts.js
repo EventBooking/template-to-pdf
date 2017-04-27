@@ -4,5 +4,10 @@ for (var i in x) {
     var z = x[i].split('=', 2);
     vars[z[0]] = unescape(z[1]);
 }
-document.getElementById('page').innerHTML = vars.page;
-document.getElementById('topage').innerHTML = vars.topage;
+function setContent(name, value) {
+    var el = document.getElementById('page');
+    if(!el) return;
+    el.innerHTML = value;
+}
+setContent('page', vars.page);
+setContent('topage', vars.topage);

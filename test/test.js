@@ -13,8 +13,13 @@ function convertHtml(name) {
 
             var buffer = new Buffer(data, 'utf8');
             var encodedHtml = buffer.toString('base64');
+            var options = {
+                orientation: 'Portrait',
+                pageSize: 'Letter',
+                debug: true
+            }
 
-            converter.convert(encodedHtml, {}).then(result => {
+            converter.convert(encodedHtml, options).then(result => {
                 var buffer = new Buffer(result, 'base64');
                 fs.writeFileSync(path.join(__dirname, `${name}.pdf`), buffer);
                 resove(buffer);
@@ -27,7 +32,9 @@ function convertHtml(name) {
 
 var timer = new Stopwatch();
 timer.start();
-convertHtml('test').then(buffer => {
+
+var fileName = process.argv.length > 2 ? process.argv[2] : 'test';
+convertHtml(fileName).then(buffer => {
     timer.stop();
     console.log(buffer);
     console.log(`Done. ${timer.ms}ms`);
