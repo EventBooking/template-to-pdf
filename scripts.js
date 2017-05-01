@@ -5,7 +5,7 @@ for (var i in x) {
     vars[z[0]] = unescape(z[1]);
 }
 function setContent(name, value) {
-    var el = document.getElementById('page');
+    var el = document.getElementById(name);
     if(!el) return;
     el.innerHTML = value;
 }
