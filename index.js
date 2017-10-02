@@ -4,7 +4,7 @@ var path = require('path'),
     cheerio = require("cheerio");
 
 async function convert(encodedHtml, options) {
-    if(!options)
+    if (!options)
         options = {};
 
     const _options = {
@@ -45,7 +45,7 @@ async function convert(encodedHtml, options) {
         ]);
 
         var content = utils.getSection($, _styles, _scripts, 'content');
-        utils.writeFile('./test/content.html', content);
+        //utils.writeFile(path.join(__dirname, './test/content.html'), content);
         var buffer = await utils.render(content, _options);
 
         var base64 = buffer.toString('base64');
