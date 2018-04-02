@@ -63,17 +63,21 @@ function writeFile(name, content) {
 
 function render(content, options) {
     return new Promise((resolve, reject) => {
-        var stream = wkhtmltopdf(content, options);
+        try {
+            var stream = wkhtmltopdf(content, options);
 
-        var chunks = [];
-        stream.on('data', data => {
-            chunks.push(data);
-        });
+            var chunks = [];
+            stream.on('data', data => {
+                chunks.push(data);
+            });
 
-        stream.on('end', () => {
-            var buffer = Buffer.concat(chunks);
-            resolve(buffer);
-        });
+            stream.on('end', () => {
+                var buffer = Buffer.concat(chunks);
+                resolve(buffer);
+            });
+        } catch (ex) {
+            reject(ex);
+        }
     });
 }
 

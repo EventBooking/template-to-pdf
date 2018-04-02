@@ -1,16 +1,13 @@
 var htmlToPdf = require('../index.js'),
     fs = require("fs"),
-    data = require('./test2.json');
+    data = require('./test3.json');
 
-htmlToPdf.convert(data, null, function (err, result) {
-    if (err) {
-        console.log(err);
-        return;
-    }
-
-    var buffer = new Buffer(result.data, 'base64');
-    console.log(buffer);
+htmlToPdf.convert(data.base64, {debug: true}).then(function (result) {
+    var buffer = new Buffer(result, 'base64');
+    //console.log(buffer);
     fs.writeFileSync('./test/test2.pdf', buffer);
 
     console.log(`Done.`);
+}).catch(function(err) {
+    console.log(err);
 });

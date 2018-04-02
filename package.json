@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "debug": "node --debug=0.0.0.0:9231 --debug-brk ./test/test.js",
-    "test": "node ./test/test.js",
+    "debug": "node --debug=0.0.0.0:9231 --debug-brk ./test/test2.js",
+    "test": "node ./test/test2.js",
     "postinstall": "node postinstall.js"
   },
   "author": "",
