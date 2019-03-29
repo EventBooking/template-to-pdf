@@ -11,6 +11,10 @@ th {
     border-style: solid;
 }
 
+tr {
+	page-break-inside: avoid;
+}
+
 .fr-view.fr-print hr {
     page-break-after: auto;
 }
