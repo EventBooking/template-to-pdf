@@ -41,5 +41,5 @@ html {
 @font-face
 {
 	font-family: serif;
-	src: local("AR PL UMing CN"), local("AR PL UKai CN"); /* Chinese */
+	src: local("AR PL UMing"), local("AR PL UKai"); /* Chinese */
 }
