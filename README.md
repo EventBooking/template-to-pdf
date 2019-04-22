@@ -1,4 +1,7 @@
 # Template to Pdf
+Node: 8.16.0
+Running Debian 9 (stretch) amd64
+WkHtmlToPDF 0.12.5 (with patched qt)\
 
 ## Usage
 ``` 
