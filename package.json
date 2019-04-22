@@ -1,6 +1,6 @@
 {
   "name": "template-to-pdf",
-  "version": "1.0.8-dev3",
+  "version": "1.0.8",
   "description": "",
   "main": "index.js",
   "scripts": {
