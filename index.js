@@ -18,7 +18,8 @@ async function convert(encodedHtml, options) {
         disableSmartShrinking: true,
         orientation: options.orientation || "Portrait",
         pageSize: options.pageSize || "Letter",
-        javascriptDelay: 1000,
+		javascriptDelay: 1000,
+		encoding: "utf-8",
         debug: typeof options.debug != undefined ? options.debug : false
     };
 
